@@ -62,7 +62,7 @@ a{color:inherit}
 .stop:active{transform:scale(.9)}
 .stop:focus-visible{outline:2px solid var(--amber-d);outline-offset:3px}
 .train{position:absolute;inset:0;pointer-events:none;transform:translateX(calc(var(--p,0) * 100%));transition:transform 520ms var(--ease-io)}
-.bus{position:absolute;left:0;top:50%;display:flex;gap:2px;margin:-9px 0 0 -24px}
+.bus{position:absolute;left:0;top:50%;display:flex;gap:2px;margin:-9px 0 0 -24px;transform-origin:50% 100%}
 .bus i{width:23px;height:18px;border-radius:5px;background:linear-gradient(var(--char) 0 42%,var(--amber) 42%);box-shadow:0 0 0 2px #fff}
 .bus i:last-child{border-radius:5px 9px 6px 5px}
 .display{min-width:0;padding:8px 14px;border-radius:8px;background:#111;box-shadow:inset 0 0 0 1px #ffffff14;text-align:right;font-family:DotGothic16,monospace;color:var(--amber);text-transform:uppercase}
@@ -73,10 +73,11 @@ a{color:inherit}
 .deck{position:absolute;inset:0;z-index:2;display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
 .deck::-webkit-scrollbar{display:none}
 .slide{position:relative;flex:0 0 100%;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow-x:hidden;overflow-y:auto;display:grid;align-items:center;padding:120px clamp(20px,6vw,96px) 96px}
-.slide>:not(.arc){position:relative;width:100%;max-width:1240px;margin:0 auto}
+.slide>:not(.arc,.arcs){position:relative;width:100%;max-width:1240px;margin:0 auto}
 .slide [data-r]{opacity:0;transform:translateY(14px);transition:opacity 380ms var(--ease-out),transform 380ms var(--ease-out);transition-delay:calc(var(--r,0)*60ms)}
 .slide.on [data-r]{opacity:1;transform:none}
 .arc{position:absolute;border-radius:50%;background:var(--amber);pointer-events:none}
+.arcs{position:absolute;inset:0;overflow:hidden;pointer-events:none}
 .arc.tr{top:-34vh;right:-16vw;width:58vw;height:56vh}
 .arc.bl{bottom:-36vh;left:-22vw;width:44vw;height:46vh}
 .station .arc.tr{top:-30vh;right:-12vw;width:34vw;height:44vh}
@@ -89,6 +90,7 @@ h1 span+span{color:var(--taupe)}
 .text{max-width:56ch;margin-top:16px;font-size:16px;line-height:1.6;color:#55565A}
 .board{display:inline-flex;align-items:center;gap:12px;margin-top:28px;padding:14px 22px;border-radius:999px;background:var(--amber);color:var(--char);font-size:15px;font-weight:600;transition:transform 160ms var(--ease-out)}
 .board:active{transform:scale(.97)}
+.board span{transition:transform 200ms var(--ease-out)}
 .how{margin-top:12px;font-size:13px;color:var(--taupe)}
 .cover-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,6vw,96px);align-items:center}
 
@@ -96,7 +98,8 @@ h1 span+span{color:var(--taupe)}
 .panel-h{display:flex;justify-content:space-between;align-items:center;padding:8px 4px 12px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
 .panel-h span:last-child{font-family:DotGothic16,monospace;color:var(--amber);font-size:16px}
 .dep{list-style:none;padding:8px 14px;border-radius:8px;background:#0E0E0F;font-family:DotGothic16,monospace;font-size:15px;color:var(--amber);text-transform:uppercase;letter-spacing:.06em;text-shadow:0 0 6px #fbb81755}
-.dep li{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;padding:5px 0;border-bottom:1px dashed #fbb81722}
+.dep li{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;padding:5px 0;border-bottom:1px dashed #fbb81722;opacity:0;transition:opacity 240ms var(--ease-out) calc(360ms + var(--i)*50ms)}
+.on .dep li{opacity:1}
 .dep li:last-child{border:0}
 .dep li i{width:8px;height:8px;border-radius:2px;background:var(--c)}
 .dep li:first-child i{animation:blink 1s steps(1) infinite}
@@ -124,6 +127,11 @@ h2{font-size:clamp(36px,4.2vw,62px);font-weight:600;line-height:1;letter-spacing
 .stats b{display:block;font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1}
 .stats b::after{content:'';display:block;width:28px;height:5px;margin-top:10px;border-radius:3px;background:var(--amber)}
 .stats span{display:block;margin-top:8px;font-size:13px;color:var(--taupe)}
+.podium{display:flex;align-items:flex-end;gap:4px;width:fit-content;margin-top:24px;padding-top:48px;overflow:hidden;border-bottom:2px solid var(--line)}
+.podium b{position:relative;width:56px;padding-top:8px;border-radius:8px 8px 0 0;background:var(--line);text-align:center;font-size:20px;transform:translateY(100%);transition:transform 450ms var(--ease-out) calc(300ms + var(--i)*70ms)}
+.podium .me{background:var(--amber)}
+.podium .logo{position:absolute;bottom:calc(100% + 8px);left:0;right:0;width:fit-content;height:30px;margin:auto;padding:0 9px 2px;border-width:3px;font-size:15px;opacity:0;transform:translateY(-10px);transition:opacity 200ms var(--ease-out) 750ms,transform 300ms var(--ease-out) 750ms}
+.on .podium b,.on .podium .logo{opacity:1;transform:none}
 
 .end{background:var(--amber)}
 .end .arc{background:#fff;opacity:.35}
@@ -155,7 +163,7 @@ h2{font-size:clamp(36px,4.2vw,62px);font-weight:600;line-height:1;letter-spacing
 
 @media (hover:hover) and (pointer:fine){
   .stop:hover{transform:scale(1.25)}
-  .links li:hover .arrow{transform:translateX(4px)}
+  .links li:hover .arrow,.board:hover span{transform:translateX(4px)}
   .links a:hover{text-decoration:underline;text-underline-offset:4px}
   .points a:hover{text-decoration-color:var(--char)}
 }
@@ -182,7 +190,7 @@ h2{font-size:clamp(36px,4.2vw,62px);font-weight:600;line-height:1;letter-spacing
 
 <script>
 const ME = {
-  bio: 'GenAI Engineer specialized in production-grade AI agents, LLM applications, RAG systems and NLP. I design scalable GenAI platforms with LangGraph, LangChain, Qdrant, AWS, Langfuse and Prefect for enterprise telecom, legal and conversational AI — backed by a strong background in MLOps, observability, cloud-native systems and high-performance backends.',
+  bio: 'Right now: an agent that triages 1,000+ support tickets a day for a major UK telecom. Before that, NLP research for Portuguese, contact-centre AI and high-throughput APIs. On the side, I teach teenagers at TUMO Coimbra to build their own chatbots.',
 };
 const CONTACT = [
   ['GitHub', 'github.com/Sparkluis5', 'https://github.com/Sparkluis5'],
@@ -204,33 +212,34 @@ const STOPS = [
       paper('Web application for the analysis of assessment tests', 'Millenium, 2018 · co-author', '10.29352/mill0207.08.00176'),
     ] },
   { year: '2019', name: 'CISUC', title: 'NLP Researcher', org: 'Center for Informatics and Systems of the University of Coimbra', when: 'Coimbra · Jan 2019 – Jul 2020', lines: ['re'],
-    points: ['Researched NLP techniques including transformers, contextual embeddings and conversational AI.', 'Developed distributed microservices systems with Docker, Kubernetes and RabbitMQ.', 'Contributed to scientific research and technical publications.'],
-    tags: ['Transformers', 'Contextual embeddings', 'Conversational AI', 'Docker', 'Kubernetes', 'RabbitMQ'] },
+    points: ['Worked on Amaia, a conversational agent that answers Portuguese entrepreneurs’ questions, testing which question-matching approaches hold up in Portuguese.', 'My first taste of shipping: research models running on distributed microservices.'],
+    tags: ['Transformers', 'Kubernetes', 'RabbitMQ'] },
   { year: '2019', name: 'INPI', title: 'Hackathon — 2nd place', org: 'Instituto Nacional da Propriedade Industrial', when: 'INPI Hackathon 2019', lines: ['co'],
-    points: ['Second place at the INPI industrial-property hackathon.'], stats: [['2nd', 'place']] },
+    points: ['Our team built a checker that flags whether a newly submitted patent clashes with patents already on file.'], podium: 2 },
   { year: '2020', name: 'Altice Labs', title: 'Software Engineer (AI & NLP)', org: 'Altice Labs', when: 'Aveiro · Sep 2020 – Jan 2022', lines: ['in'],
-    points: ['Developed NLP models for emotion, sentiment and urgency classification.', 'Built MLOps pipelines and microservice architectures for conversational AI systems.', 'Created AI-driven proofs of concept and supported production platform operations.'],
-    tags: ['NLP', 'MLOps', 'Microservices', 'Conversational AI'] },
+    points: ['Trained emotion, sentiment and urgency classifiers that add metadata to every customer interaction, in production for a selected group of users.', 'Built the pipelines and services that kept them running, plus AI proofs of concept for the conversational-AI platform.'],
+    tags: ['NLP', 'MLOps', 'Microservices'] },
   { year: '2022', name: 'Nefertiti', title: 'Software Engineer', org: 'Nefertiti.tech', when: 'Remote · Jan 2022 – Sep 2023', lines: ['in'],
-    points: ['Built high-performance B2B APIs handling 3M+ monthly requests with sub-300&nbsp;ms response times.', 'Developed blockchain indexers for Ethereum, Polygon and Solana.', 'Migrated infrastructure to AWS and redesigned systems into real-time, event-driven architectures.'],
+    points: ['Built the B2B API that serves digital-token appraisals at volume.', 'Wrote the blockchain indexers and moved the platform to real-time, event-driven infrastructure.'],
     stats: [['3M+', 'API requests / month'], ['<300ms', 'response times'], ['3', 'chains indexed']] },
   { year: '2023', name: 'Visor.ai', title: 'Senior Data Scientist', org: 'Visor.ai', when: 'Remote · Sep 2023 – Mar 2025', lines: ['in'],
-    points: ['Developed NLP and LLM-powered solutions for legal and compliance automation.', 'Fine-tuned LLMs for legal entity extraction, clause detection and GDPR / EU compliance analysis.', 'Built Speech-to-Text and AI processing pipelines for conversational AI systems.', 'Designed scalable AI infrastructure, model-serving workflows and compliance rule engines.'],
-    tags: ['LLM fine-tuning', 'NLP', 'Speech-to-Text', 'Model serving'] },
+    points: ['Built an automatic compliance checker for contact centres at insurers and high-volume sales companies: it analyses every call and checks whether the agent followed the required guidelines.', 'Built an outbound voice agent that places phone calls on its own across several scenarios.', 'Fine-tuned LLMs for legal work: entity extraction, clause detection and GDPR / EU compliance checks.'],
+    tags: ['Speech-to-Text', 'LLM fine-tuning', 'Voice agents'] },
   { year: '2023', name: 'TUMO', title: 'Workshop Leader', org: 'TUMO Coimbra', when: 'Coimbra · Sep 2023 – Present', lines: ['te'],
-    points: ['Mentoring students in programming, backend systems, APIs and software-engineering fundamentals.', 'Guiding project-based learning and providing technical mentorship.'],
-    tags: ['Mentoring', 'Backend', 'APIs'] },
+    points: ['Level 1: programming fundamentals in JavaScript, from a Wordle clone to turtle.js animations.', 'Level 2: object-oriented programming, building Conway’s Game of Life.', 'Level 3, designed from scratch at TUMO Coimbra: students build their own chatbot with transformers.js.', 'Took that to re:b00tcmp’s cybersecurity workshop alongside PJ and PSP: talked about small hacking projects so they learn to use those skills for good.'],
+    stats: [['~700', 'students so far'], ['~12', 'per workshop']],
+    tags: ['JavaScript', 'transformers.js', 'Mentoring'] },
   { year: '2025', name: 'Evolve', title: 'GenAI Engineer', org: 'Evolve Software', when: 'Coimbra · Mar 2025 – Present', lines: ['in'],
-    points: ['Architected and developed an AI agent for a major UK telecom company, automating triage and resolution of Customer Success tickets.', 'Built multi-agent workflows with LangGraph, RAG pipelines with Qdrant, and observability / evaluation with Langfuse.', 'Developed scalable GenAI infrastructure on AWS, orchestrating workflows with Prefect.', 'Led architecture decisions, prompt engineering, tool integrations and production deployment strategy.'],
-    tags: ['LangGraph', 'Qdrant', 'Langfuse', 'AWS', 'Prefect'] },
+    points: ['Architected and built an AI agent for a major UK telecom that triages Customer Success tickets and turns them into AI report insights.', 'Customer Success teams also chat with it about open cases: it plans, calls tools, then answers.', 'The client’s verdict: it’s now better at triage than their human operators.', 'Owned the whole path to production: ingestion jobs, retrieval, evaluation and observability.'],
+    stats: [['1K+', 'tickets / day'], ['~20&nbsp;min', 'saved per ticket interaction']],
+    tags: ['LangGraph', 'Qdrant', 'Langfuse', 'Prefect', 'AWS'] },
   { year: '2026', name: 'Próxima', lines: ['in'], planned: true },
 ];
 const STACK = [
-  ['AI & GenAI', 'ed', 'AI Agents · LLMs · LangGraph · LangChain · RAG · Vector Search · Prompt Engineering · Agentic Workflows · Transformers · PyTorch · TensorFlow · Speech-to-Text · Fine-Tuning'],
-  ['Languages & Backend', 'in', 'Python · Node.js · FastAPI · Flask · Django · SQL'],
-  ['Vector & Data', 're', 'Qdrant · PostgreSQL · MongoDB · Redis · Kafka · RabbitMQ'],
-  ['Cloud & DevOps', 'co', 'AWS · Docker · Kubernetes · ECS · S3 · CloudFront · CI/CD · Prefect'],
-  ['Observability & MLOps', 'x', 'Langfuse · Model Evaluation · Experiment Tracking · Prompt Monitoring · Deployment Pipelines'],
+  ['AI & GenAI', 'ed', 'AI agents · LangGraph · LangChain · RAG · LLM fine-tuning · Speech-to-Text · PyTorch'],
+  ['Backend', 'in', 'Python · FastAPI · Node.js'],
+  ['Data', 're', 'Qdrant · PostgreSQL · Redis · Kafka'],
+  ['Cloud & MLOps', 'co', 'AWS · Docker · Kubernetes · Prefect · Langfuse'],
 ];
 
 const N = STOPS.length;
@@ -239,6 +248,7 @@ const REDUCED = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const ext = href => href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
 const pad = n => String(n).padStart(2, '0');
 const chips = (cls, list) => list?.length ? `<p class="${cls}">${list.map(t => `<span>${t}</span>`).join('')}</p>` : '';
+const podium = place => `<div class="podium" data-r style="--r:4" aria-hidden="true">${[2, 1, 3].map((n, i) => `<b${n === place ? ' class="me"' : ''} style="height:${112 - 24 * n}px;--i:${i}">${n === place ? '<span class="logo">LD</span>' : ''}${n}</b>`).join('')}</div>`;
 
 const station = (s, i) => `<section class="slide station" aria-label="${s.year}, ${s.name}">
   <span class="arc tr" aria-hidden="true"></span>
@@ -255,6 +265,7 @@ const station = (s, i) => `<section class="slide station" aria-label="${s.year},
       <ul class="points" data-r style="--r:3">${s.points.map(p => `<li>${p}</li>`).join('')}</ul>
       ${s.stats ? `<ul class="stats" data-r style="--r:4">${s.stats.map(([v, k]) => `<li><b>${v}</b><span>${k}</span></li>`).join('')}</ul>` : ''}
       ${s.tags ? `<div data-r style="--r:4">${chips('tags', s.tags)}</div>` : ''}
+      ${s.podium ? podium(s.podium) : ''}
     </div>
   </div>
 </section>`;
@@ -271,19 +282,19 @@ const site = () => `<main class="site" tabindex="-1">
   </header>
   <div class="deck">
     <section class="slide" aria-label="Introduction">
-      <span class="arc tr" aria-hidden="true"></span><span class="arc bl" aria-hidden="true"></span>
+      <span class="arcs" aria-hidden="true"><span class="arc tr"></span><span class="arc bl"></span></span>
       <div class="cover-grid">
         <div>
           <p class="kicker" data-r style="--r:0">Coimbra, Portugal</p>
           <h1 data-r style="--r:1"><span>Luis</span><span>Duarte</span></h1>
-          <p class="lede" data-r style="--r:2">GenAI engineer building production-grade AI agents, LLM applications and RAG systems.</p>
+          <p class="lede" data-r style="--r:2">GenAI engineer. I build AI agents that do real work in production.</p>
           <p class="text" data-r style="--r:3">${ME.bio}</p>
           <button class="board" data-go="1" data-r style="--r:4">Embarcar em ${STOPS[0].name} <span aria-hidden="true">→</span></button>
           <p class="how" data-r style="--r:5">Scroll, swipe or press ↓ — ${RIDE.length} stations, one line.</p>
         </div>
         <div class="panel" data-r style="--r:3">
           <p class="panel-h"><span>Partidas · Departures</span><span class="clock">--:--</span></p>
-          <ol class="dep">${RIDE.map(s => `<li style="--c:var(--${s.lines[0]})"><i></i><span>${s.name}</span><b>${s.year}</b></li>`).join('')}</ol>
+          <ol class="dep">${RIDE.map((s, i) => `<li style="--c:var(--${s.lines[0]});--i:${i}"><i></i><span>${s.name}</span><b>${s.year}</b></li>`).join('')}</ol>
         </div>
       </div>
     </section>
@@ -310,20 +321,30 @@ const site = () => `<main class="site" tabindex="-1">
 
 function initDeck(root) {
   const deck = root.querySelector('.deck'), slides = [...deck.children], last = slides.length - 1;
-  const rail = root.querySelector('.rail'), segs = rail.querySelectorAll('.seg'), stops = rail.querySelectorAll('.stop');
+  const rail = root.querySelector('.rail'), segs = rail.querySelectorAll('.seg'), stops = rail.querySelectorAll('.stop'), bus = rail.querySelector('.bus');
   const dk = root.querySelector('.dk'), dv = root.querySelector('.dv'), count = root.querySelector('.count');
-  let cur = -1, raf = 0, locked = false, unlock;
-  const go = i => deck.scrollTo({ left: Math.max(0, Math.min(last, i)) * deck.clientWidth, behavior: REDUCED() ? 'auto' : 'smooth' });
+  const TRAVEL = 520;
+  let cur = -1, at = 0, raf = 0, locked = false, unlock, leaning;
+  const go = i => { const t = Math.max(0, Math.min(last, i)); deck.scrollTo({ left: t * deck.clientWidth, behavior: REDUCED() || Math.abs(t - cur) > 1 ? 'auto' : 'smooth' }); };
+  const lean = dir => bus.animate([
+    { transform: 'none', easing: 'ease-in-out' },
+    { transform: `skewX(${8 * dir}deg)`, offset: .3, easing: 'ease-in-out' },
+    { transform: `skewX(${-5 * dir}deg)`, offset: .75, easing: 'ease-in-out' },
+    { transform: 'none' },
+  ], TRAVEL);
   const update = () => {
     raf = 0;
     const i = Math.round(deck.scrollLeft / deck.clientWidth);
     if (i === cur) return;
     cur = i;
-    const k = Math.max(0, i - 1);
+    const k = Math.max(0, i - 1), from = at;
+    at = k;
+    const when = x => { const f = Math.min(1, Math.abs(x - from) / Math.abs(k - from) || 0); return `${Math.round(TRAVEL * (f < .5 ? (f / 8) ** .25 : 1 - (2 - 2 * f) ** .25 / 2))}ms`; };
     slides.forEach((s, j) => s.classList.toggle('on', j === i));
     rail.style.setProperty('--p', k / (N - 1));
-    segs.forEach((s, j) => s.classList.toggle('done', i > 0 && j < k));
-    stops.forEach((s, j) => s.classList.toggle('past', i > 0 && j <= k));
+    segs.forEach((s, j) => { s.style.transitionDelay = when(k > from ? j : j + 1); s.classList.toggle('done', i > 0 && j < k); });
+    stops.forEach((s, j) => { s.style.transitionDelay = `0ms, ${when(j)}`; s.classList.toggle('past', i > 0 && j <= k); });
+    if (k !== from && !REDUCED() && leaning?.playState !== 'running') leaning = lean(Math.sign(k - from));
     [dk.textContent, dv.textContent] = i === 0 ? ['Próxima estação', STOPS[0].name] : i === last ? ['Fim de linha', 'Contactos'] : ['Estação', STOPS[k].name];
     if (!REDUCED()) dv.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
     count.textContent = `${pad(i + 1)} / ${slides.length}`;
@@ -352,6 +373,7 @@ function initDeck(root) {
     else if (step) { e.preventDefault(); go(cur + step); }
   });
   update();
+  if (!REDUCED()) bus.animate([{ translate: '-24px 0', opacity: 0 }, { translate: '0 0', opacity: 1 }], { duration: 700, delay: 200, easing: 'cubic-bezier(0.23, 1, 0.32, 1)', fill: 'backwards' });
 }
 
 function liveClock(el) {
