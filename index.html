@@ -5,10 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Luis Duarte — GenAI Engineer</title>
 <meta name="description" content="Luis Duarte — GenAI Engineer in Coimbra, Portugal, building production-grade AI agents, LLM applications and RAG systems.">
+<meta name="author" content="Luis Duarte">
+<link rel="canonical" href="https://sparkluis5.github.io/PersonalPage/">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://sparkluis5.github.io/PersonalPage/">
+<meta property="og:site_name" content="Luis Duarte">
 <meta property="og:title" content="Luis Duarte — GenAI Engineer">
 <meta property="og:description" content="Production-grade AI agents, LLM applications and RAG systems. Coimbra, Portugal.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://sparkluis5.github.io/PersonalPage/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Luis Duarte, GenAI Engineer in Coimbra, with a Metro Mondego-style departures board of career stations.">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Luis Duarte",
+  "url": "https://sparkluis5.github.io/PersonalPage/",
+  "jobTitle": "GenAI Engineer",
+  "worksFor": { "@type": "Organization", "name": "Evolve Software" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Coimbra", "addressCountry": "PT" },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Universidade de Coimbra" },
+    { "@type": "CollegeOrUniversity", "name": "Universidade da Beira Interior" }
+  ],
+  "knowsAbout": ["AI Agents", "Large Language Models", "Retrieval-Augmented Generation", "Natural Language Processing", "LangGraph", "MLOps"],
+  "sameAs": ["https://www.linkedin.com/in/the-luis-duarte/", "https://github.com/Sparkluis5"]
+}
+</script>
 <meta name="theme-color" content="#FBB817">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='3' y='13' width='58' height='38' rx='19' fill='%23FBB817'/%3E%3Ctext x='32' y='40' font-family='Arial,sans-serif' font-weight='700' font-size='23' text-anchor='middle' fill='%232C2D30'%3ELD%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +47,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:inherit}
 :root{--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-io:cubic-bezier(0.77,0,0.175,1);
   --amber:#FBB817;--amber-d:#E3A300;--char:#2C2D30;--shelter:#3A3B3E;--taupe:#857E78;--line:#E8E4DC;
-  --ed:#FBB817;--re:#3DAE49;--in:#1F6FC5;--co:#E2001A;--x:#C9C4BE}
+  --ed:#FBB817;--re:#3DAE49;--in:#1F6FC5;--co:#E2001A;--te:#8A4FBF;--x:#C9C4BE}
 .site{position:fixed;inset:0;overflow:hidden;outline:none}
 
 .bar{position:absolute;inset:0 0 auto;z-index:4;display:grid;grid-template-columns:auto minmax(0,1fr) 230px;align-items:center;gap:32px;padding:20px clamp(20px,5vw,72px);background:#fff;box-shadow:inset 0 -4px 0 var(--amber),0 6px 18px #0000000d}
@@ -164,7 +189,7 @@ const CONTACT = [
   ['LinkedIn', 'in/the-luis-duarte', 'https://www.linkedin.com/in/the-luis-duarte/'],
 ];
 const paper = (title, venue, doi) => `<a href="https://doi.org/${doi}" target="_blank" rel="noopener">“${title}” <span aria-hidden="true">↗</span></a> · ${venue}`;
-const LINES = { ed: 'Education', re: 'Research', in: 'Industry', co: 'Community & awards' };
+const LINES = { ed: 'Education', re: 'Research', in: 'Industry', co: 'Awards', te: 'Teaching' };
 const COLS = Object.keys(LINES);
 const STOPS = [
   { year: '2014', name: 'Covilhã', title: 'BSc Computer Science and Engineering', org: 'Universidade da Beira Interior', when: 'Covilhã · 2014 – 2017', lines: ['ed'],
@@ -192,7 +217,7 @@ const STOPS = [
   { year: '2023', name: 'Visor.ai', title: 'Senior Data Scientist', org: 'Visor.ai', when: 'Remote · Sep 2023 – Mar 2025', lines: ['in'],
     points: ['Developed NLP and LLM-powered solutions for legal and compliance automation.', 'Fine-tuned LLMs for legal entity extraction, clause detection and GDPR / EU compliance analysis.', 'Built Speech-to-Text and AI processing pipelines for conversational AI systems.', 'Designed scalable AI infrastructure, model-serving workflows and compliance rule engines.'],
     tags: ['LLM fine-tuning', 'NLP', 'Speech-to-Text', 'Model serving'] },
-  { year: '2023', name: 'TUMO', title: 'Workshop Leader', org: 'TUMO Coimbra', when: 'Coimbra · Sep 2023 – Present', lines: ['co'],
+  { year: '2023', name: 'TUMO', title: 'Workshop Leader', org: 'TUMO Coimbra', when: 'Coimbra · Sep 2023 – Present', lines: ['te'],
     points: ['Mentoring students in programming, backend systems, APIs and software-engineering fundamentals.', 'Guiding project-based learning and providing technical mentorship.'],
     tags: ['Mentoring', 'Backend', 'APIs'] },
   { year: '2025', name: 'Evolve', title: 'GenAI Engineer', org: 'Evolve Software', when: 'Coimbra · Mar 2025 – Present', lines: ['in'],
